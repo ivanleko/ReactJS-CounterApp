@@ -11,7 +11,7 @@ class Counter extends React.Component {
           <span className={this.getBadgeClasses()}>{this.formatvalue()}</span>
           <button
             onClick={() => this.props.onIncrement(this.props.counter)}
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm "
           >
             +
           </button>
@@ -26,6 +26,12 @@ class Counter extends React.Component {
             className="btn btn-danger btn-sm m-2"
           >
             Remove
+          </button>
+          <button
+            onClick={() => this.props.onLike(this.props.counter)}
+            className="btn btn-primary btn-sm m-2"
+          >
+            Like
           </button>
         </div>
       );

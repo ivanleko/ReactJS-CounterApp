@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // Stateless Functional Component
 
-const NavBar = ({ totalCounters }) => {
+const NavBar = ({ totalCounters, totalLikes }) => {
   return (
     <nav className="navbar bg-light">
       <div className="navbar-brand" href="#">
@@ -16,6 +16,9 @@ const NavBar = ({ totalCounters }) => {
         <span className="navbar-brand mb-0 h1 m-3">
           Distinct Items{" "}
           <span className="badge badge-pill badge-dark">{totalCounters}</span>
+          <span className="m-2"></span>
+          Wishlist{" "}
+          <span className="badge badge-pill badge-info m-2">{totalLikes}</span>
         </span>
       </div>
     </nav>
