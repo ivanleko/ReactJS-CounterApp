@@ -28,7 +28,7 @@ class Counter extends React.Component {
             Remove
           </button>
           <button
-            onClick={() => this.props.onLike(this.props.counter)}
+            onClick={() => this.props.onLike(this.props.counter.id, true)}
             className="btn btn-primary btn-sm m-2"
           >
             Like

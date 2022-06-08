@@ -57,14 +57,40 @@ class App extends React.Component {
     this.setState({ counters });
   };
 
-  handleLike = counter => {
-    console.log(`Item liked. Item ID: ${counter.id} ${counter.like}`);
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].like = !false;
+  // Malo sam modificirao funkciju da prihvati iskljucivo dva parametra:
+  // 1. "counterID" da mogu pronaci index
+  // 2. "like" stanje koje zelim da bude (true ili false)
+  // Ovu funkciju ne zanima nis drugo tako da sam sve ostalo ignorirao i bio eksplicitan
+  // I to je upitno trebas li uopce drugi parametar al eto, ovako imas potpunu kontrolu nad time zelis li like ili ne
+  // Pitanje je sad zelis li "toggle" da bude like on/off, to je mrvu drugacije
+  handleLike = (clickedCounterId, newLikeState) => {
+    console.log(`Item liked. Item ID: ${clickedCounterId}`, newLikeState);
+    let counters = [...this.state.counters];
+
+    // Ovako je bolje naci index, direktno
+    const index = counters.findIndex(counter => counter.id === clickedCounterId)
+
+    // U ovom trenutku, "like" na tom indexu je jos uvijek false jer prikazujem originalno stanje
+    // Ovaj output ce biti FALSE
+    console.log(111, index, counters[index])
+
+    // Ovdje sam zaista promjenio like, i ovdje ce biti TRUE
+    counters[index].like = newLikeState || false; // ovo kaze postavi like na newLikeState ili defaultno postavi "false" ako nisam nista proslijedio
+    console.log(222, index, counters[index])
+
     this.setState({ counters });
   };
+
+  // Ovo je alternativni primjer gdje ne zelim newLikeState vec cu uvijek postavit "suprotno" od onog sto je trenutno
+  // Znaci ako je like = true, kad ovo se okine postat ce false, i obrnuto. Efektivno treba biti Like/Unlike gumb
+  // handleLike = (clickedCounterId) => {
+  //   console.log(`Item liked. Item ID: ${clickedCounterId}`);
+  //   let counters = [...this.state.counters];
+  //   const index = counters.findIndex(counter => counter.id === clickedCounterId)
+  //   counters[index].like = !counters[index].like;
+  //   console.log(index, counters[index])
+  //   this.setState({ counters });
+  // };
 
   render() {
     return (
